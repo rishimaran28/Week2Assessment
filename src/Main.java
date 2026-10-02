@@ -1,16 +1,26 @@
 public class Main {
 
-    public static void checkPinLength(String pin) {
-        if (pin.length() != 4) {
-            System.out.println("Invalid PIN — must be exactly 4 digits.");
+    public static void parseInventoryRecord(String csvLine) {
+        // Split the CSV line by comma
+        String[] fields = csvLine.split(",");
+
+        // Validate that exactly 3 fields are present
+        if (fields.length != 3) {
+            System.out.println("Invalid Record");
         } else {
-            System.out.println("PIN length OK.");
+            // Extract fields
+            String productName = fields[0];
+            String sku = fields[1];
+            String quantity = fields[2];
+
+            // Print formatted record
+            System.out.println("Product: " + productName + " | SKU: " + sku + " | Qty: " + quantity);
         }
     }
 
     public static void main(String[] args) {
         // Test cases from sample input/output
-        checkPinLength("482");   // Prints: Invalid PIN — must be exactly 4 digits.
-        checkPinLength("4820");  // Prints: PIN length OK.
+        parseInventoryRecord("Wireless Mouse,WM-2201,150"); // Output: Product: Wireless Mouse | SKU: WM-2201 | Qty: 150
+        parseInventoryRecord("Wireless Mouse,150");         // Output: Invalid Record
     }
 }
