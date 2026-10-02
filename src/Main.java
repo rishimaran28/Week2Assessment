@@ -1,16 +1,29 @@
 public class Main {
 
-    public static void checkPinLength(String pin) {
-        if (pin.length() != 4) {
-            System.out.println("Invalid PIN — must be exactly 4 digits.");
-        } else {
-            System.out.println("PIN length OK.");
+    public static String reverseEachWord(String sentence) {
+        // Split sentence into individual words by space
+        String[] words = sentence.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        // Loop through each word and reverse it using StringBuilder
+        for (int i = 0; i < words.length; i++) {
+            StringBuilder wordSb = new StringBuilder(words[i]);
+            result.append(wordSb.reverse().toString());
+
+            // Append space between words (except for the last word)
+            if (i < words.length - 1) {
+                result.append(" ");
+            }
         }
+
+        return result.toString();
     }
 
     public static void main(String[] args) {
-        // Test cases from sample input/output
-        checkPinLength("482");   // Prints: Invalid PIN — must be exactly 4 digits.
-        checkPinLength("4820");  // Prints: PIN length OK.
+        // Test case from sample input/output
+        String input = "hello club";
+        String output = reverseEachWord(input);
+
+        System.out.println(output); // Prints: olleh bulc
     }
 }
